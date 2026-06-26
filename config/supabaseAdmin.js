@@ -15,11 +15,32 @@ const supabaseAdmin = createClient(
   }
 );
 
-async function runSQL(sql) {
-  const { data, error } = await supabaseAdmin.rpc("exec_sql", { sql });
+// async function runSQL(sql) {
+//   const { data, error } = await supabaseAdmin.rpc("exec_sql", { sql });
 
-  if (error) throw error;
-  return data;
+//   if (error) throw error;
+//   return data;
+// }
+
+async function runSQL(sql) {
+  console.log("================================");
+  console.log("SUPABASE_URL:", process.env.SUPABASE_URL);
+  console.log("Calling exec_sql...");
+
+  try {
+    const { data, error } = await supabaseAdmin.rpc("exec_sql", { sql });
+
+    console.log("RPC Data:", data);
+    console.log("RPC Error:", error);
+
+    if (error) throw error;
+
+    return data;
+  } catch (err) {
+    console.error("FULL ERROR:");
+    console.error(err);
+    throw err;
+  }
 }
 
 module.exports = { supabaseAdmin, runSQL };
