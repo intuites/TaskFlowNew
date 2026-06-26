@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TaskFlow - Admin Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <h2>TaskFlow Admin Dashboard</h2>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+      <div class="card">
+        <h3>Quick Actions</h3>
+
+        <div class="quick-actions">
+          <a href="users.html">
+            <button class="action-btn">Manage Users</button>
+          </a>
+
+          <a href="create-task.html">
+            <button class="action-btn">Create Task</button>
+          </a>
+
+          <a href="tasks.html">
+            <button class="action-btn">View All Tasks</button>
+          </a>
+
+          <a href="tasks.html">
+            <button class="action-btn" onclick="openDepartmentModal()">
+              Manage Departments
+            </button>
+          </a>
+        </div>
+      </div>
+      <!-- DASHBOARD COUNTS -->
+      <div class="card">
+        <h3>Task Summary</h3>
+
+        <br />
+
+        <table>
+          <tr>
+            <th>Total Tasks</th>
+            <td id="totalTasks">0</td>
+          </tr>
+
+          <tr>
+            <th>Pending Tasks</th>
+            <td id="pendingTasks">0</td>
+          </tr>
+
+          <tr>
+            <th>Completed Tasks</th>
+            <td id="completedTasks">0</td>
+          </tr>
+        </table>
+      </div>
+
+      <!-- RECENT TASKS -->
+      <div class="card">
+        <h3>Recent Tasks</h3>
+
+        <br />
+
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+
+              <th>Department</th>
+
+              <th>Assigned To</th>
+
+              <th>Status</th>
+
+              <th>Created</th>
+            </tr>
+          </thead>
+
+          <tbody id="recentTasks"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- modal -->
+    <!-- Department Modal -->
+
+    <div id="departmentModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Manage Departments</h3>
+
+          <span class="close-btn" onclick="closeDepartmentModal()"> × </span>
+        </div>
+
+        <div class="department-add">
+          <input
+            type="text"
+            id="departmentName"
+            placeholder="Department Name"
+          />
+
+          <button onclick="createDepartment()">Add</button>
+        </div>
+
+        <div class="department-table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Department</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody id="departmentTable"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+
+    <script>
+      // const API = "http://localhost:5000/api";
+
+      async function loadDashboard() {
+        try {
+          const response = await fetch(`${API}/tasks/all`, {
+            headers: authHeaders(),
+          });
+
+          const tasks = await response.json();
+
+          const total = tasks.length;
+
+          const completed = tasks.filter((t) => t.completed === true).length;
+
+          const pending = total - completed;
+
+          document.getElementById("totalTasks").innerText = total;
+
+          document.getElementById("pendingTasks").innerText = pending;
+
+          document.getElementById("completedTasks").innerText = completed;
+
+          const recent = document.getElementById("recentTasks");
+
+          recent.innerHTML = "";
+
+          tasks.slice(0, 10).forEach((task) => {
+            recent.innerHTML += `
+
+              <tr>
+
+                <td>
+                  ${task.task || ""}
+                </td>
+
+                <td>
+                  ${task.department || ""}
+                </td>
+
+                <td>
+                  ${task.person || ""}
+                </td>
+
+                <td>
+                  ${task.status || "Pending"}
+                </td>
+
+                <td>
+                  ${new Date(task.created_at).toLocaleDateString()}
+                </td>
+
+              </tr>
+
+            `;
+          });
+        } catch (err) {
+          console.log("Dashboard Error:", err);
+        }
+      }
+
+      loadDashboard();
+    </script>
+  </body>
+</html>

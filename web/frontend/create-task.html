@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>TaskFlow - Create Task</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="header">
+      <h2>Create Task</h2>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- MAIN -->
+    <div class="container">
+      <div class="card">
+        <form id="taskForm">
+          <!-- DEPARTMENT -->
+
+          <div class="form-group">
+            <label> Department </label>
+
+            <select id="department" required>
+              <option value="">Select Department</option>
+            </select>
+          </div>
+
+          <!-- USER -->
+
+          <div class="form-group">
+            <label> Assign User </label>
+
+            <select id="userSelect" required>
+              <option value="">Select User</option>
+            </select>
+          </div>
+
+          <!-- TASK -->
+
+          <div class="form-group">
+            <label> Task Description </label>
+
+            <textarea
+              id="task"
+              rows="6"
+              placeholder="Enter task details..."
+              required
+            ></textarea>
+          </div>
+
+          <!-- REMINDER -->
+
+          <div class="form-group">
+            <label> Reminder Frequency </label>
+
+            <select id="reminder">
+              <option value="daily">Daily</option>
+
+              <option value="weekly">Weekly</option>
+
+              <option value="monthly">Monthly</option>
+
+              <option value="quarterly">Quarterly</option>
+
+              <option value="yearly">Yearly</option>
+
+              <option value="custom">Custom</option>
+            </select>
+          </div>
+
+          <!-- CUSTOM DAYS -->
+
+          <div class="form-group" id="customDaysWrapper" style="display: none">
+            <label> Custom Reminder Days </label>
+
+            <input
+              type="number"
+              id="customDays"
+              min="1"
+              placeholder="Example: 5"
+            />
+          </div>
+
+          <!-- BUTTONS -->
+
+          <div style="display: flex; gap: 15px; margin-top: 20px">
+            <button type="submit" style="flex: 1">Create Task</button>
+
+            <button
+              type="button"
+              onclick="window.location.href = 'admin-dashboard.html'"
+              style="flex: 1; background: #64748b"
+            >
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+
+    <script>
+      const reminder = document.getElementById("reminder");
+
+      const customDaysWrapper = document.getElementById("customDaysWrapper");
+
+      reminder.addEventListener("change", () => {
+        if (reminder.value === "custom") {
+          customDaysWrapper.style.display = "block";
+        } else {
+          customDaysWrapper.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

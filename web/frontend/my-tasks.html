@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My Tasks</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="header">
+      <h2>My Tasks</h2>
+
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <div class="container">
+      <div class="card">
+        <table>
+          <thead>
+            <tr>
+              <th>Task</th>
+
+              <th>Department</th>
+
+              <th>Status</th>
+
+              <th>Created</th>
+
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="myTaskTable"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="js/auth.js"></script>
+    <script src="js/tasks.js"></script>
+  </body>
+</html>

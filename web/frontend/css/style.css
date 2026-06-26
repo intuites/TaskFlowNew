@@ -1,0 +1,583 @@
+/* =========================
+   RESET
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #f8fafc;
+  --card: #ffffff;
+  --sidebar: #0f172a;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --success: #16a34a;
+  --warning: #f59e0b;
+  --danger: #dc2626;
+  --text: #1e293b;
+  --muted: #64748b;
+  --border: #e2e8f0;
+}
+
+body {
+  font-family:
+    Inter,
+    Segoe UI,
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header {
+  background: white;
+  height: 70px;
+  padding: 0 30px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid var(--border);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logout-btn {
+  width: auto;
+  padding: 10px 20px;
+
+  background: var(--danger);
+  border-radius: 10px;
+
+  transition: 0.2s;
+}
+
+.logout-btn:hover {
+  background: #b91c1c;
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.container {
+  padding: 30px;
+  max-width: 1400px;
+  margin: auto;
+}
+
+/* =========================
+   CARD
+========================= */
+
+.card {
+  background: var(--card);
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  margin-bottom: 25px;
+
+  border: 1px solid var(--border);
+
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 10px 20px rgba(0, 0, 0, 0.04);
+}
+
+.card h3 {
+  margin-bottom: 20px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+  border: none;
+
+  background: var(--primary);
+
+  color: white;
+
+  padding: 12px 18px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+
+  font-size: 14px;
+
+  font-weight: 600;
+}
+
+button:hover {
+  background: var(--primary-hover);
+  transform: translateY(-1px);
+}
+
+/* =========================
+   FORM
+========================= */
+
+input,
+select,
+textarea {
+  width: 100%;
+
+  padding: 14px;
+
+  border: 1px solid var(--border);
+
+  border-radius: 10px;
+
+  background: white;
+
+  font-size: 14px;
+
+  margin-top: 8px;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+
+  border-color: var(--primary);
+
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.login-container {
+  width: 420px;
+
+  background: white;
+
+  margin: 120px auto;
+
+  padding: 35px;
+
+  border-radius: 20px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+.login-container h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+#error {
+  color: var(--danger);
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* =========================
+   DASHBOARD CARDS
+========================= */
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  border: 1px solid var(--border);
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.stat-title {
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.stat-value {
+  margin-top: 10px;
+  font-size: 34px;
+  font-weight: bold;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table thead {
+  background: #f1f5f9;
+}
+
+table th {
+  text-align: left;
+  padding: 14px;
+  color: var(--text);
+  font-size: 14px;
+}
+
+table td {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+}
+
+table tr:hover {
+  background: #f8fafc;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.badge {
+  padding: 6px 12px;
+
+  border-radius: 999px;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+.badge-pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badge-started {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.badge-completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+/* =========================
+   LINKS
+========================= */
+
+a {
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+/* =========================
+   QUICK ACTIONS
+========================= */
+
+.quick-actions {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.quick-actions a {
+  flex: 1;
+  min-width: 220px;
+}
+
+.action-btn {
+  width: 100%;
+  height: 60px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+
+  .login-container {
+    width: 95%;
+  }
+
+  .header {
+    padding: 0 15px;
+  }
+
+  table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+/*  */
+.task-summary-card {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.task-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-summary-header h2 {
+  margin: 0;
+}
+
+.task-meta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.task-meta label {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.task-meta p {
+  margin-top: 5px;
+  font-weight: 600;
+}
+
+.status-badge {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.pending {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.started {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.completed {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.update-grid {
+  display: grid;
+  gap: 15px;
+}
+
+.primary-btn {
+  margin-top: 15px;
+}
+
+.activity-feed {
+  margin-top: 20px;
+}
+
+.activity-item {
+  border-left: 4px solid #2563eb;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: #f8fafc;
+  border-radius: 10px;
+}
+
+.activity-top {
+  display: flex;
+  justify-content: space-between;
+}
+
+.activity-status {
+  font-weight: 700;
+}
+
+.activity-user {
+  color: #64748b;
+}
+
+.activity-comment {
+  margin-top: 10px;
+}
+
+.activity-date {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+/* for modal departments web flow */
+/* =========================
+   DEPARTMENT MODAL
+========================= */
+
+/* =========================
+   DEPARTMENT MODAL
+========================= */
+
+.modal {
+  display: none;
+
+  position: fixed;
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  z-index: 9999;
+
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background: white;
+
+  width: 900px;
+  max-width: 95%;
+
+  height: 80vh;
+
+  border-radius: 16px;
+
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+}
+
+/* HEADER */
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+
+  flex-shrink: 0;
+}
+
+.modal-header h3 {
+  margin: 0;
+}
+
+.close-btn {
+  font-size: 30px;
+  font-weight: bold;
+
+  cursor: pointer;
+
+  color: #333;
+
+  line-height: 1;
+}
+
+.close-btn:hover {
+  color: #dc2626;
+}
+
+/* ADD SECTION */
+
+.department-add {
+  display: flex;
+  gap: 10px;
+
+  margin-bottom: 20px;
+
+  flex-shrink: 0;
+}
+
+.department-add input {
+  flex: 1;
+  margin: 0;
+}
+
+.department-add button {
+  width: 120px;
+  flex-shrink: 0;
+}
+
+/* TABLE AREA */
+
+.department-table-wrapper {
+  flex: 1;
+
+  overflow-y: auto;
+
+  border: 1px solid #e5e7eb;
+
+  border-radius: 10px;
+}
+
+.department-table-wrapper table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.department-table-wrapper thead {
+  position: sticky;
+  top: 0;
+
+  background: #f3f4f6;
+
+  z-index: 5;
+}
+
+.department-table-wrapper th,
+.department-table-wrapper td {
+  padding: 15px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.department-table-wrapper tr:hover {
+  background: #f9fafb;
+}
